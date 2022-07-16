@@ -1,3 +1,5 @@
+from faker import Faker
+fake = Faker("en_US")
 class BaseContact:
     def __init__(self, name, surname, tel, mail):
         self.name = name
@@ -5,14 +7,15 @@ class BaseContact:
         self.tel = tel
         self.mail = mail
 
+        self.label_lenght = 0
+
     def contact(self):
         return f'I am dialing number {self.tel} and calling {self.name} {self.surname}'  
 
     @property
     def label_lenght(self):
-        return sum([len(self.name), len(self.surname),+1])
+        return len(f"{self.name} {self.surname}")
   
-
 class BusinessContact(BaseContact):
     def __init__(self, position, company, business_tel, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,21 +30,9 @@ class BusinessContact(BaseContact):
     def label_lenght(self):
         return sum([len(self.name), len(self.surname),+1])
 
-
-def create_contacts(kind, quantity):
-
-    contacts = []
-    for i in range(quantity):
-        if kind == 'b':
-            business_contacts.append(BusinessContact)
-        elif kind == 'p':
-            contacts.append(BaseContact)
-    return contacts
-
-contacts = []
-business_contacts = []
-
 if __name__ == "__main__":
+    contacts = []
+    business_contacts = []
     print("Select the type of business card:")
     print("p - private")
     print("b - business")
@@ -53,16 +44,28 @@ if __name__ == "__main__":
             quantity = float(input("Enter number of cards:"))
        
         if choice == 'p':
-            for i in range(quantity):
+            for i in range(int(quantity)):
                 contacts.append(BaseContact)
-    #Czy da się tutaj for in range zastosować i czy jednak robić to tylko w funkcji create_contacts?
         elif choice == 'b':
-            for i in range(quantity):
+            for i in range(int(quantity)):
                 business_contacts.append(BusinessContact)
         elif choice == 'x':
             exit()
         else:
             print("Invalid input")
-
-        
-
+    
+    def create_contacts(kind, quantity):
+        for i in range(int(quantity)):
+            if kind == 'b':
+                business_contacts.append(BusinessContact)
+            elif kind == 'p':
+                contacts.append(BaseContact)
+        return contacts
+    
+    human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
+              mail=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
+    print(human_1)
+    print(human_1.contact())
+    print(human_1.business_contact())
+    print(human_1.label_lenght)
+    print() 
