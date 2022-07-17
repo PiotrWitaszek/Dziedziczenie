@@ -7,14 +7,14 @@ class BaseContact:
         self.tel = tel
         self.mail = mail
 
-        self.label_lenght = 0
+        self.label_lenght = len(f"{self.name} {self.surname}")
 
     def contact(self):
         return f'I am dialing number {self.tel} and calling {self.name} {self.surname}'  
 
     @property
     def label_lenght(self):
-        return len(f"{self.name} {self.surname}")
+        return self.label_lenght
   
 class BusinessContact(BaseContact):
     def __init__(self, position, company, business_tel, *args, **kwargs):
@@ -28,7 +28,7 @@ class BusinessContact(BaseContact):
 
     @property
     def label_lenght(self):
-        return sum([len(self.name), len(self.surname),+1])
+        return self.label_lenght
 
 if __name__ == "__main__":
     contacts = []
@@ -44,11 +44,9 @@ if __name__ == "__main__":
             quantity = float(input("Enter number of cards:"))
        
         if choice == 'p':
-            for i in range(int(quantity)):
-                contacts.append(BaseContact)
+            contacts.append(BaseContact)
         elif choice == 'b':
-            for i in range(int(quantity)):
-                business_contacts.append(BusinessContact)
+            business_contacts.append(BusinessContact)
         elif choice == 'x':
             exit()
         else:
@@ -57,15 +55,17 @@ if __name__ == "__main__":
     def create_contacts(kind, quantity):
         for i in range(int(quantity)):
             if kind == 'b':
-                business_contacts.append(BusinessContact)
+                human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
+              mail=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
+
             elif kind == 'p':
-                contacts.append(BaseContact)
+                human_2 = BaseContact(name=fake.first_name(), surname=fake.last_name(), mail=fake.email(), tel=fake.phone_number())
         return contacts
     
     human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               mail=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
     print(human_1)
-    print(human_1.contact())
-    print(human_1.business_contact())
+    print(human_1.BaseContact())
+    print(human_1.BusinessContact())
     print(human_1.label_lenght)
     print() 
