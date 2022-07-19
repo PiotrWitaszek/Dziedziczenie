@@ -27,7 +27,6 @@ class BusinessContact(BaseContact):
         self.position = position
 human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               email_address=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
-print(human_1)
 print(human_1.contact())
 print(human_1.businesscontact())
 print(human_1.label_lenght)
