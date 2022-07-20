@@ -24,13 +24,6 @@ class BusinessContact(BaseContact):
         self.business_tel = business_tel
         self.company = company
         self.position = position
-
-    def businesscontact(self):
-        return f'I am dialing number {self.business_tel} and calling {self.name} {self.surname}' 
-
-    @property
-    def label_lenght(self):
-        return self._label_lenght
       
 human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               email_address=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
