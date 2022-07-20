@@ -18,17 +18,43 @@ class BaseContact:
         return self._label_lenght
 
 
-class BusinessContact(BaseContact):
-    def __init__(self, business_tel, company, position, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.business_tel = business_tel
-        self.company = company
-        self.position = position
+if __name__ == "__main__":
+    class BusinessContact(BaseContact):
+        def __init__(self, business_tel, company, position, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.business_tel = business_tel
+            self.company = company
+            self.position = position
+
+        def businesscontact(self):
+            return f'I am dialing number {self.business_tel} and calling {self.name} {self.surname}'
       
-human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
+    human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               email_address=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
 
-if __name__ == "__main__":
-  print(human_1.contact())
-  print(human_1.businesscontact())
-  print(human_1.label_lenght)
+    contacts = []
+    business_contacts = []
+    print("Select the type of business card:")
+    print("p - private")
+    print("b - business")
+    print("x - exit programm")
+    
+    def create_contacts(kind, quantity):
+        while True:
+            choice = input("Enter choice (p/b/x):")
+
+            if choice in ('p', 'b',):
+                quantity = float(input("Enter number of cards:"))
+       
+            if choice == 'p':
+                contacts.append(BaseContact)
+            elif choice == 'b':
+                business_contacts.append(BusinessContact)
+            elif choice == 'x':
+                exit()
+            else:
+                print("Invalid input")
+    
+    print(human_1.contact())
+    print(human_1.businesscontact())
+    print(human_1.label_lenght)
