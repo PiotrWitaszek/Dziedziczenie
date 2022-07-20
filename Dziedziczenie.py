@@ -7,13 +7,15 @@ class BaseContact:
         self.surname = surname
         self.email_address = email_address
         self.tel = tel
-    
+
+        self._label_lenght = len(f"{self.name} {self.surname}")
+        
     def contact(self):
         return f'I am dialing number {self.tel} and calling {self.name} {self.surname}'  
     
     @property
     def label_lenght(self):
-        return len(f"{self.name} {self.surname}")
+        return self._label_lenght
 
 
 class BusinessContact(BaseContact):
@@ -25,6 +27,10 @@ class BusinessContact(BaseContact):
 
     def businesscontact(self):
         return f'I am dialing number {self.business_tel} and calling {self.name} {self.surname}' 
+
+    @property
+    def label_lenght(self):
+        return self._label_lenght
       
 human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               email_address=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
