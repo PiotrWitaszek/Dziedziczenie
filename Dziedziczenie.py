@@ -26,9 +26,9 @@ def create_contacts(kind, quantity):
                 quantity = float(input("Enter number of cards:"))
        
             if choice == 'p':
-                contacts.append(Self)
+                contacts.append(human_1)
             elif choice == 'b':
-                business_contacts.append(Self)
+                business_contacts.append(human_1)
             elif choice == 'x':
                 exit()
             else:
@@ -48,6 +48,9 @@ if __name__ == "__main__":
     human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               email_address=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
 
+    def create_contacts(kinds, quantity):
+        return create_contacts
+    
     contacts = []
     business_contacts = []
     print("Select the type of business card:")
@@ -55,8 +58,6 @@ if __name__ == "__main__":
     print("b - business")
     print("x - exit programm")
     
-    def create_contacts(kinds, quantity):
-        return create_contacts
     
     print(human_1.contact())
     print(human_1.label_lenght)
