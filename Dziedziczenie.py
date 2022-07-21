@@ -1,3 +1,4 @@
+from typing_extensions import Self
 from faker import Faker
 fake = Faker("en_US")
 
@@ -17,6 +18,21 @@ class BaseContact:
     def label_lenght(self):
         return self._label_lenght
 
+def create_contacts(kind, quantity):
+        while True:
+            choice = input("Enter choice (p/b/x):")
+
+            if choice in ('p', 'b',):
+                quantity = float(input("Enter number of cards:"))
+       
+            if choice == 'p':
+                contacts.append(Self)
+            elif choice == 'b':
+                business_contacts.append(Self)
+            elif choice == 'x':
+                exit()
+            else:
+                print("Invalid input")
 
 if __name__ == "__main__":
     class BusinessContact(BaseContact):
@@ -26,7 +42,7 @@ if __name__ == "__main__":
             self.company = company
             self.position = position
 
-        def businesscontact(self):
+        def contact(self):
             return f'I am dialing number {self.business_tel} and calling {self.name} {self.surname}'
       
     human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
@@ -39,22 +55,8 @@ if __name__ == "__main__":
     print("b - business")
     print("x - exit programm")
     
-    def create_contacts(kind, quantity):
-        while True:
-            choice = input("Enter choice (p/b/x):")
-
-            if choice in ('p', 'b',):
-                quantity = float(input("Enter number of cards:"))
-       
-            if choice == 'p':
-                contacts.append(BaseContact)
-            elif choice == 'b':
-                business_contacts.append(BusinessContact)
-            elif choice == 'x':
-                exit()
-            else:
-                print("Invalid input")
+    def create_contacts(kinds, quantity):
+        return create_contacts
     
     print(human_1.contact())
-    print(human_1.businesscontact())
     print(human_1.label_lenght)
