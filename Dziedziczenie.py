@@ -26,19 +26,24 @@ class BusinessContact(BaseContact):
 
         def contact(self):
             return f'I am dialing number {self.business_tel} and calling {self.name} {self.surname}'
-contacts = []
-business_contacts = []
+
 def create_contacts():
-        while True:
+    print("Select the type of business card:")
+    print("p - private")
+    print("b - business")
+    print("x - exit programm")
+    while True:
             choice = input("Enter choice (p/b/x):")
 
             if choice in ('p', 'b',):
                 quantity = float(input("Enter number of cards:"))
        
             if choice == 'p':
-                contacts.append(human_1*quantity)
+                contacts = []
+                print(quantity*contacts.append(human_1))
             elif choice == 'b':
-                business_contacts.append(human_1*quantity)
+                business_contacts = []
+                print(quantity*business_contacts.append(human_1))
             elif choice == 'x':
                 exit()
             else:
@@ -47,13 +52,6 @@ def create_contacts():
 if __name__ == "__main__":  
     human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               email_address=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
-
-    print("Select the type of business card:")
-    print("p - private")
-    print("b - business")
-    print("x - exit programm")
-    
     create_contacts()
     
-    print(human_1.contact())
-    print(human_1.label_lenght)
+   
