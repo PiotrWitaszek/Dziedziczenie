@@ -40,10 +40,14 @@ def create_contacts():
        
             if choice == 'p':
                 contacts = []
-                print(quantity*contacts.append(human_1))
+                for human_1 in range(int(quantity)):
+                    contacts.append(human_1)
+                print(contacts)
             elif choice == 'b':
                 business_contacts = []
-                print(quantity*business_contacts.append(human_1))
+                for human_1 in range(int(quantity)):
+                    business_contacts.append(human_1)
+                print(business_contacts)
             elif choice == 'x':
                 exit()
             else:
