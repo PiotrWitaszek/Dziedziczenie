@@ -12,7 +12,9 @@ class BaseContact:
         
     def contact(self):
         return f'I am dialing number {self.tel} and calling {self.name} {self.surname}'  
-    
+
+
+  
     @property
     def label_lenght(self):
         return self._label_lenght
@@ -36,16 +38,16 @@ def create_contacts():
             choice = input("Enter choice (p/b/x):")
 
             if choice in ('p', 'b',):
-                quantity = float(input("Enter number of cards:"))
+                quantity = int(input("Enter number of cards:"))
        
             if choice == 'p':
                 contacts = []
-                for human_1 in range(int(quantity)):
+                for i in range(quantity):
                     contacts.append(human_1)
                 print(contacts)
             elif choice == 'b':
                 business_contacts = []
-                for human_1 in range(int(quantity)):
+                for i in range(quantity):
                     business_contacts.append(human_1)
                 print(business_contacts)
             elif choice == 'x':
