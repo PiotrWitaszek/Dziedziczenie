@@ -43,12 +43,12 @@ def create_contacts():
             if choice == 'p':
                 contacts = []
                 for i in range(quantity):
-                    contacts.append(human_1)
+                    contacts.append([fake.first_name(), fake.last_name(), fake.email(), fake.phone_number()])
                 print(contacts)
             elif choice == 'b':
                 business_contacts = []
                 for i in range(quantity):
-                    business_contacts.append(human_1)
+                    business_contacts.append([fake.first_name(), fake.last_name(), fake.email(), fake.phone_number(), fake.company(), fake.job() , fake.phone_number()])
                 print(business_contacts)
             elif choice == 'x':
                 exit()
@@ -59,5 +59,3 @@ if __name__ == "__main__":
     human_1 = BusinessContact(name=fake.first_name(), surname=fake.last_name(), company=fake.company(), position=fake.job(),
               email_address=fake.email(), tel=fake.phone_number(), business_tel=fake.phone_number())
     create_contacts()
-    
-   
