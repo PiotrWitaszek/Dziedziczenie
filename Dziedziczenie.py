@@ -24,8 +24,8 @@ class BaseContact:
         return self._label_lenght
 
 class BusinessContact(BaseContact):
-        def __init__(self, name, surname, email_address, tel, business_tel, company, position):
-            super().__init__(name, surname, email_address, tel)
+        def __init__(self, business_tel, company, position, *args, **kwargs):
+            super().__init__(*args, **kwargs)
             self.business_tel = business_tel
             self.company = company
             self.position = position
@@ -55,7 +55,7 @@ def create_contacts():
             elif choice == 'b':
                 business_contacts = []
                 for i in range(quantity):
-                    business_contacts.append(BusinessContact(fake.first_name(), fake.last_name(), fake.email(), fake.phone_number(), fake.phone_number(), fake.company(), fake.job()))
+                    business_contacts.append(BusinessContact(fake.phone_number(), fake.company(), fake.job(), fake.first_name(), fake.last_name(), fake.email(), fake.phone_number()))
                 print(business_contacts)
             elif choice == 'x':
                 exit()
